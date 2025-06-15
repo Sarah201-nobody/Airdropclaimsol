@@ -9,6 +9,7 @@
   <style>
     body {
       font-family: sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
     }
     .animate-fadeIn {
       animation: fadeIn 0.3s ease-out;
@@ -19,7 +20,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white">
+<body class="min-h-screen bg-gray-900 text-white">
 
   <!-- Header -->
   <header class="py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
